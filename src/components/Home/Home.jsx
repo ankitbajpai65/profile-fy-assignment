@@ -105,8 +105,8 @@ const HomePage = () => {
               All
             </button>
           </li>
-          {categories?.map((category) => (
-            <li className="flex items-center">
+          {categories?.map((category, index) => (
+            <li className="flex items-center" key={index}>
               <button
                 onClick={() => handleFilter(category)}
                 className={`w-max text-gray-500 text-sm hover:text-gray-800  ${

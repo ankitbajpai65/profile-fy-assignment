@@ -11,14 +11,15 @@ const Cart = () => {
 
   useEffect(() => {
     const total = cartItems?.reduce(
-      (acc, item) => acc + item.price * item.quantity,
+      (acc, item) => acc + (item.price || 0) * (item.quantity || 0),
       0
     );
     setTotalPrice(total);
   }, [cartItems]);
 
+
   return (
-    <div className="cart min-h-[85vh] h-fit mt-28 mb-24 bg-white">
+    <div className="cart min-h-[65vh] h-fit mt-28 mb-20 bg-white">
       <div className="flex flex-col md:flex-row justify-evenly lg:justify-center items-start gap-4 lg:gap-8 p-5">
         <div className="w-full md:w-8/12 lg:w-7/12 bg-white">
           {!cartItems ? (
@@ -30,12 +31,15 @@ const Cart = () => {
               <img
                 src="/cart.jpeg"
                 alt="Empty Cart"
-                className="w-2/5 rounded-full mb-8"
+                className="w-48 rounded-full mb-8"
               />
-              <h1 className="text-2xl sm:text-4xl mb-4 sm:mb-8">
+              <h1 className="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8">
                 Your cart is empty
               </h1>
-              <Link href="/" className="btn btn-primary text-xl sm:text-2xl">
+              <Link
+                href="/"
+                className="bg-blue-500 text-white text-lg sm:text-xl rounded-md py-2 px-3 sm:px-4"
+              >
                 Shop Now
               </Link>
             </div>
