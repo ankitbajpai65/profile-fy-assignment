@@ -20,10 +20,12 @@ const CartItem = (props) => {
           <img src={item.image} alt="Item" className="h-full m-auto" />
         </div>
         <div className="w-4/12 p-4">
-          <span className="block text-sm sm:text-base mb-3 cursor-pointer">
+          <span
+            className={`block text-sm sm:text-base mb-3 cursor-pointer truncate`}
+          >
             {item.title}
           </span>
-          <span className="text-sm sm:text-base font-bold">{item.price}</span>
+          <span className="text-sm sm:text-base font-bold">₹{item.price}</span>
         </div>
         <div className="w-3/12 p-4 flex flex-col gap-5 items-center justify-center">
           <span className="flex items-center">

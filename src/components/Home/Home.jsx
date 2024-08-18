@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/context/CartContext";
 import ItemCard from "./ItemCard";
 
 const HomePage = () => {

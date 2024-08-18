@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import Link from "next/link";
 import Loader from "../Loader";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/context/CartContext";
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);

@@ -23,7 +23,7 @@ const ItemCard = ({ item, handleAddCart }) => {
             <IoCartOutline size={20} />
           </button>
         </div>
-        <p className="text-gray-700 mb-2">{item.price}</p>
+        <p className="text-gray-700 mb-2">₹{item.price}</p>
       </div>
     </div>
   );
