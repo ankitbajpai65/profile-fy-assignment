@@ -16,7 +16,7 @@ const HomePage = () => {
   const [categories, setCategories] = useState();
   const [activecategory, setActiveCategory] = useState("All");
   const [searchedKeyword, setSearchedKeyword] = useState("");
-
+  const [selected, setSelected] = useState("Sort by:");
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -72,6 +72,7 @@ const HomePage = () => {
     setActiveCategory(category);
     const filteredItems = items.filter((item) => item.category === category);
     setFilteredItems(filteredItems);
+    setSelected("Sort by:");
   }
 
   const handleSearch = (e) => {
@@ -83,11 +84,21 @@ const HomePage = () => {
     }
   };
 
+  const handleSort = (e) => {
+    const elem = e.target.value;
+    let sorted = [...filteredItems].sort((a, b) => a.price - b.price);
+    if (elem === "Price : High to Low") {
+      sorted.reverse();
+    }
+    setFilteredItems(sorted);
+    setSelected(elem);
+  };
+
   return (
     <section className="p-10 min-h-[95vh] relative pb-20">
       <ToastContainer />
       <nav
-        className="mt-20 mb-16 flex justify-between gap-5 flex-col md:flex-row"
+        className="mt-20 mb-16 flex justify-between gap-5 flex-col lg:flex-row"
         ref={navRef}
       >
         <ul className="scrollbar-hide list-none flex gap-10 overflow-x-auto">
@@ -96,6 +107,7 @@ const HomePage = () => {
               onClick={() => {
                 setActiveCategory("All");
                 setFilteredItems(items);
+                setSelected("Sort by:");
               }}
               className={`text-gray-500 text-sm hover:text-gray-600 ${
                 activecategory === "All" &&
@@ -119,8 +131,19 @@ const HomePage = () => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center w-60">
-          <div className="relative w-full">
+        <div className="flex gap-6 items-center">
+          <select
+            className="border rounded-lg p-2 text-sm"
+            value={selected}
+            onChange={handleSort}
+          >
+            <option disabled hidden>
+              Sort by:
+            </option>
+            <option>Price : Low to High</option>
+            <option>Price : High to Low</option>
+          </select>
+          <div className="w-60 relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
               <FaSearch onClick={handleSearch} />
             </span>
